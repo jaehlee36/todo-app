@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 
-const TodoInsert = (props) => {
   const Form = styled.form`
     display: flex;
     background: #495057;
@@ -35,17 +34,15 @@ const TodoInsert = (props) => {
       background: #adb5bd;
     }
   `;
-  const [value, setValue] = useState('');
+const TodoInsert = (props) => {
+  const [_value, setValue] = useState('');
   const { list, setList } = props;
 
-  // const handleChange = (e) => {
-  //   setValue(e.target.value);
-  // };
   const handleChange = useCallback((e) => {
     setValue(e.target.value);
   }, []);
   const handleClick = (e) => {
-    const newList = list.concat(value);
+    const newList = list.concat(_value);
     setList(newList);
     setValue('');
     e.preventDefault();
@@ -54,8 +51,9 @@ const TodoInsert = (props) => {
     <>
       <Form>
         <Input
+          key="key"
           placeholder="할 일을 입력하세요"
-          value={value}
+          value={_value}
           onChange={handleChange}
         ></Input>
         <Button type="submit" onClick={handleClick}>
