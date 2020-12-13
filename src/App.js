@@ -1,23 +1,27 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import TodoTemplate from './components/TodoTemplate';
+import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
 
 function App() {
+  // const addList = (list, setList) => {
+  //   const newList = list.concat({ value });
+  //   setValue('');
+  // };
+  // const [value, setValue] = useState('');
+  const [list, setList] = useState(['할일1', '할일2']);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoTemplate>
+        <TodoInsert
+          // value={value}
+          // setValue={setValue}
+          list={list}
+          setList={setList}
+        ></TodoInsert>
+        <TodoList list={list} />
+      </TodoTemplate>
     </div>
   );
 }
